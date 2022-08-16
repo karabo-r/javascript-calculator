@@ -2,26 +2,39 @@ const addButton = document.getElementById("addButton");
 const subtractButton = document.getElementById("subtractButton");
 const multiplyButton = document.getElementById("multiplyButton");
 const divideButton = document.getElementById("divideButton");
+const calculateButton = document.getElementById("calculateButton");
 
-let number = 0
+let numberStore = [];
 
-const operators = {
-    "+": (x, y) => (x + y),
-    "-": (x, y) => (x - y),
-    "*": (x, y) => (x * y),
-    "/": (x, y) => (x / y), 
+function setOperatorEventListener(...buttons) {
+	buttons.forEach((button) => {
+		button.addEventListener("click", addOperatorToNumber);
+	});
 }
 
-function setEventListener(...buttons){
-    buttons.forEach(button =>{
-        button.addEventListener('click',calculate)
-    })
+setOperatorEventListener(
+	addButton,
+	subtractButton,
+	multiplyButton,
+	divideButton,
+);
+
+calculateButton.addEventListener("click", calculate);
+
+number20.addEventListener("click", (e) => {
+	numberStore.push(e.target.value);
+	console.log(number);
+});
+
+// push operator found in the button's value
+function addOperatorToNumber(operatorButton) {
+	if (numberStore[0]) {
+		numberStore.push(operatorButton.target.value);
+		console.log(numberStore);
+	}
 }
-
-setEventListener(addButton, subtractButton, multiplyButton, divideButton)
-
-// set the operator found in the button's value
-function calculate(operatorButton) {
-    const currentOperator = operatorButton.target.value;
-    console.log(operators[currentOperator](20,20));
+function calculate() {
+	const numberString = numberStore.join(" ");
+	const finalAnswers = eval(numberString);
+	console.log(finalAnswers);
 }
