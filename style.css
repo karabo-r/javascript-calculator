@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main{
+    /* background-color: rebeccapurple; */
+    height: 35rem;
+    width: 30%;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main input{
+    height: 3.5rem;
+    width: 100%;
+    /* background-color: red; */
+    outline: none;
+    border: none;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+main .collection{
+    /* background-color: red; */
+    height: 60%;
+    width: 100%;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 75% auto;
+}
+
+main .numberCollection{
+    /* background-color: green; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+main .numberCollection .numberButton{
+    margin: 6px;
+}
+
+main .operatorCollection{
+    display: grid;
+    /* flex-direction: column; */
+    grid-template-rows: repeat(5, auto);
+    /* background-color: royalblue; */
+}
+
+main .operatorCollection .operatorButton {
+    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
