@@ -1,14 +1,10 @@
 const display = document.getElementById("display");
-const addButton = document.getElementById("addButton");
-const subtractButton = document.getElementById("subtractButton");
-const multiplyButton = document.getElementById("multiplyButton");
-const divideButton = document.getElementById("divideButton");
-const calculateButton = document.getElementById("calculateButton");
+const operatorCollection =document.getElementById("operatorCollection").childNodes;
 const numberCollection = document.getElementById("numberCollection").childNodes;
 
 let numberStore = [];
 
-function setOperatorEventListener(...buttons) {
+function setOperatorEventListener(buttons) {
 	buttons.forEach((button) => {
 		button.addEventListener("click", pushOperator);
 	});
@@ -25,12 +21,7 @@ function setNumberEventListener(numbers) {
 
 calculateButton.addEventListener("click", calculate);
 setNumberEventListener(numberCollection);
-setOperatorEventListener(
-	addButton,
-	subtractButton,
-	multiplyButton,
-	divideButton,
-);
+setOperatorEventListener(operatorCollection);
 
 // push operator found in the button's value
 function pushOperator(operatorButton) {
