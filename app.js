@@ -37,7 +37,7 @@ function pushOperator(operatorButton) {
 	if (numberStore[0]) {
 		numberStore.push(operatorButton.target.value);
 		const numberString = numberStore.join(" ");
-		updateDisplay(numberString)
+		updateDisplay(numberString);
 	}
 }
 
@@ -51,18 +51,22 @@ function calculate() {
 	if (numberStore) {
 		const numberString = numberStore.join(" ");
 		const finalAnswers = eval(numberString);
+		numberStore = [finalAnswers];
 		updateDisplay(finalAnswers);
 	}
-	numberStore = [];
 }
 
 function checkPreviousNumberAndReplace() {
 	const lastNumberIndex = numberStore.length - 1;
 	const previousNumberIndex = numberStore.length - 2;
-	const lastNumber = numberStore[lastNumberIndex];
-	const previousNumber = numberStore[previousNumberIndex];
-	if (typeof lastNumber === "number" && typeof previousNumber === "number") {
-		const newNumber = Number(previousNumber.toString() + lastNumber.toString());
+	if (
+		typeof numberStore[lastNumberIndex] === "number" &&
+		typeof numberStore[previousNumberIndex] === "number"
+	) {
+		const newNumber = Number(
+			numberStore[previousNumberIndex].toString() +
+				numberStore[lastNumberIndex].toString(),
+		);
 		numberStore.splice(previousNumberIndex, 2, newNumber);
 	}
 	const numberString = numberStore.join(" ");
