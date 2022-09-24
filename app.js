@@ -1,7 +1,7 @@
 const display = document.getElementById("display");
-const operatorCollection =
-	document.getElementById("operatorCollection").childNodes;
+const operatorCollection = document.getElementById("operatorCollection").childNodes;
 const numberCollection = document.getElementById("numberCollection").childNodes;
+const resetButton = document.getElementById('resetButton')
 
 let numberStore = [];
 
@@ -20,6 +20,7 @@ function setNumberEventListener(numbers) {
 	});
 }
 
+resetButton.addEventListener("click", reset)
 calculateButton.addEventListener("click", calculate);
 setNumberEventListener(numberCollection);
 setOperatorEventListener(operatorCollection);
@@ -48,6 +49,11 @@ function calculate() {
 		numberStore = [finalAnswers];
 		updateDisplay(finalAnswers);
 	}
+}
+
+function reset(){
+	numberStore = []
+	updateDisplay(numberStore)
 }
 
 function checkPreviousNumberAndReplace() {
