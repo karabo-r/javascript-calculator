@@ -1,5 +1,6 @@
 const display = document.getElementById("display");
-const operatorCollection =document.getElementById("operatorCollection").childNodes;
+const operatorCollection =
+	document.getElementById("operatorCollection").childNodes;
 const numberCollection = document.getElementById("numberCollection").childNodes;
 
 let numberStore = [];
@@ -26,9 +27,11 @@ setOperatorEventListener(operatorCollection);
 // push operator found in the button's value
 function pushOperator(operatorButton) {
 	if (numberStore[0]) {
-		numberStore.push(operatorButton.target.value);
-		const numberString = numberStore.join(" ");
-		updateDisplay(numberString);
+		if (operatorButton.target.value !== "") {
+			numberStore.push(operatorButton.target.value);
+			const numberString = numberStore.join(" ");
+			updateDisplay(numberString);
+		}
 	}
 }
 
