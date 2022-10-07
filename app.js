@@ -1,9 +1,10 @@
 const display = document.getElementById("display");
-const operatorCollection = document.getElementById("operatorCollection").childNodes;
+const operatorCollection =document.getElementById("operatorCollection").childNodes;
 const numberCollection = document.getElementById("numberCollection").childNodes;
-const resetButton = document.getElementById('resetButton')
+const resetButton = document.getElementById("resetButton");
 
-let numberStore = [];
+let numberStore = [0];
+updateDisplay(numberStore);
 
 function setOperatorEventListener(buttons) {
 	buttons.forEach((button) => {
@@ -20,7 +21,7 @@ function setNumberEventListener(numbers) {
 	});
 }
 
-resetButton.addEventListener("click", reset)
+resetButton.addEventListener("click", reset);
 calculateButton.addEventListener("click", calculate);
 setNumberEventListener(numberCollection);
 setOperatorEventListener(operatorCollection);
@@ -38,7 +39,6 @@ function pushOperator(operatorButton) {
 
 function pushNumber(number) {
 	numberStore.push(Number(number.target.value));
-	console.log(numberStore);
 	checkPreviousNumberAndReplace();
 }
 
@@ -51,11 +51,14 @@ function calculate() {
 	}
 }
 
-function reset(){
-	numberStore = []
-	updateDisplay(numberStore)
+function reset() {
+	numberStore = [0];
+	updateDisplay(numberStore);
 }
 
+// replace if previous number is also a number, example [1, 2]
+// the numbers are then combined as strings 1 + 2 = 12
+// then replace index 0 and 1 with new value ([1, 2] => [12])
 function checkPreviousNumberAndReplace() {
 	const lastNumberIndex = numberStore.length - 1;
 	const previousNumberIndex = numberStore.length - 2;
